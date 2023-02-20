@@ -1,5 +1,4 @@
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.io.Serializable;
@@ -7,8 +6,21 @@ import java.io.Serializable;
 @Entity
 public class Car implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @OneToOne(mappedBy = "car")
+    private Person person;
     private String model;
 
     public String getModel() {
@@ -43,6 +55,15 @@ public class Car implements Serializable {
         this.model = model;
         this.make = make;
         this.mileage = mileage;
+
+    }
+
+    public Car( String model, String make, Long mileage) {
+
+        this.model = model;
+        this.make = make;
+        this.mileage = mileage;
+
     }
 
     public Car() {

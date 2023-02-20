@@ -8,10 +8,36 @@ public class Main {
      System.out.println("start");
      EntityManagerFactory emf= Persistence.createEntityManagerFactory("default");
      EntityManager em = emf.createEntityManager();
-     Car c = new Car(1L,"toyota","yaris",100L);
+
      EntityTransaction tx=em.getTransaction();
+     Car car1 = new Car("toyota","yaris",100L);
+     Car car2 = new Car("toyota","Camry",50L);
+     Person person1 = new Person("ahmed",car1);
+     Person person2 = new Person("Jhonny",car2);
+
+     Course c1 = new Course(1L, "course1", 25L);
+     Course c2 = new Course(2L, "course2", 25L);
+     Course c3 = new Course(3L, "course3", 25L);
+     Student s1 = new Student ("Jhon", 3.5f, c1);
+     Student s2 = new Student ("Jhonny", 3.5f, c1);
+     Student s3 = new Student ("Ahmad", 3.5f, c2);
+     Student s4 = new Student ("Jim", 3.5f, c3);
+
+
+
      tx.begin();
-     em.persist(c);
+     em.persist(c1);
+     em.persist(c2);
+     em.persist(c3);
+     em.persist(s1);
+     em.persist(s2);
+     em.persist(s3);
+     em.persist(s4);
+     em.persist(person1);
+     em.persist(person2);
+     em.persist(car1);
+     em.persist(car2);
+
      tx.commit();
 
      //update
