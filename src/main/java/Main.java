@@ -4,15 +4,15 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class Main {
- public static void main(String argsp[]){
+ public static void main(String [] args){
      System.out.println("start");
      EntityManagerFactory emf= Persistence.createEntityManagerFactory("default");
      EntityManager em = emf.createEntityManager();
-     /*Car c = new Car(1l,"toyota","yaris",100l);
+     Car c = new Car(1L,"toyota","yaris",100L);
      EntityTransaction tx=em.getTransaction();
      tx.begin();
      em.persist(c);
-     tx.commit();*/
+     tx.commit();
 
      //update
      /*Car c = em.find(Car.class, 1l);
@@ -23,12 +23,12 @@ public class Main {
      tx.commit();*/
 
      //delete
-     Car c = em.find(Car.class, 1l);
+     /*Car c = em.find(Car.class, 1l);
 
      EntityTransaction tx=em.getTransaction();
      tx.begin();
      em.remove(c);
-     tx.commit();
+     tx.commit();*/
 
      em.close();
      emf.close();
