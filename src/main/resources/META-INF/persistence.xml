@@ -8,6 +8,8 @@
         <class>Course</class>
         <class>Student</class>
         <class>Person</class>
+        <class>OnCampus</class>
+        <class>DistanceEducation</class>
         <properties>
 
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

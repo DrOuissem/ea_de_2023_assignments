@@ -2,16 +2,22 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="courseType")
 public class Course implements Serializable {
     private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
     private String title;
-    private Long capacity;
+    private Date startDate;
+    private String professorName;
+
     @OneToMany()
     private List<Student> students = new ArrayList<Student>();
     public void setId(Long id) {
@@ -32,13 +38,6 @@ public class Course implements Serializable {
         this.title = title;
     }
 
-    public Long getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Long capacity) {
-        this.capacity = capacity;
-    }
 
     public List<Student> getStudents() {
         return new ArrayList<>(this.students);
@@ -48,19 +47,17 @@ public class Course implements Serializable {
         this.students = students;
     }
 
-    public Course(Long id, String title, Long capacity) {
-        this.id = id;
-        this.title = title;
-        this.capacity = capacity;
-    }
+
 
     public Course() {
 
     }
 
-    public Course( String title, Long capacity) {
-        this.title = title;
-        this.capacity = capacity;
+    public Course(Long id, String title, Date startDate, String professorName){
+        this.id=id;
+        this.title=title;
+        this.professorName=professorName;
+        this.startDate=startDate;
     }
 
     @Override
@@ -68,7 +65,23 @@ public class Course implements Serializable {
         return "Course{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", capacity=" + capacity +
+                ", professor=" + this.professorName +
                 '}';
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
     }
 }
